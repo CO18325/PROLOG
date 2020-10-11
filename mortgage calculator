@@ -1,0 +1,27 @@
+/*a basic code that helps in getting a monthly morgage on a loan given the time
+period , bank from where money is loaned
+and the principal amount of loan*/
+
+/*The formula for the mortgage calculation has been taken from the link
+ https://homeguides.sfgate.com/calculate-monthly-house-payment-30-year-fixed-loan-9679.html*/
+rate("SBI",'9.50').
+rate("HDFC",'7.40').
+rate("AXIS",'12.00').
+
+find_mortgage:-
+    write('What is the no. of your bank?: 1.SBI,2.HDFC,3.AXIS,4.OTHER'),nl,
+    read(NO),nl,
+    write('Enter the loan amount:'),nl,
+    read(L),nl,
+    write('Enter the mortgage period(time period of loan in months)'),nl,
+    read(T),
+        (NO=1->write('rate of interest is 9.50% P.A.'),X is 9.50/1200,nl,
+         write('Monthly mortgage is'),M is L*(X*(1+X)**T)/((1+X)**T-1),write(M);
+        (NO=2->write('rate of interest is7.40% P.A.'),X is 7.40/1200,nl,
+         write('Monthly mortgage is'),M is L*(X*(1+X)**T)/((1+X)**T-1),write(M);
+        (NO=4->write('Enter the rate of interest(per annum)'),nl,
+               read(R),X is R/1200,
+         write('Monthly mortgage is'),M is L*(X*(1+X)**T)/((1+X)**T-1),write(M);
+        (NO=3->write('rate of interest is 12.00% P.A.'),X is 12/1200,nl,
+         write('Monthly mortgage is'),M is L*(X*(1+X)**T)/((1+X)**T-1),write(M))))).
+
